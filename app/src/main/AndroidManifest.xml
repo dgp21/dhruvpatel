@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Dhruvpatel"
+        tools:targetApi="31">
+        <activity
+            android:name=".registrationactivity"
+            android:exported="false"
+            android:label="@string/title_activity_registrationactivity"
+            android:theme="@style/Theme.Dhruvpatel" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Dhruvpatel">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
+    public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.GalleryViewHolder> {
+
+private List<String> imageUrls;
+    private int orientation;
+
+    public GalleryAdapter(List<String> imageUrls, int orientation) {
+        this.imageUrls = imageUrls;
+        this.orientation = orientation;
+        }
+
+        @NonNull
+        @Override
+        public GalleryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.gallery_item, parent, false);
+        return new GalleryViewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull GalleryViewHolder holder, int position) {
+        Glide.with(holder.itemView.getContext())
+        .load(imageUrls.get(position))
+        .into(holder.imageView);
+
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) holder.imageView.getLayoutParams();
+        if (orientation == AppBarActivity.ORIENTATION_TOP_TO_BOTTOM) {
+        layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
+        layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        } else {
+        layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+        layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
+        }
+        holder.imageView.setLayoutParams(layoutParams);
+        }
+
+        @Override
+        public int getItemCount() {
+        return imageUrls.size();
+        }
+
+        static class GalleryViewHolder extends RecyclerView.ViewHolder {
+
+        ImageView imageView;
+
+        public GalleryViewHolder(@NonNull View itemView) {
+        super(itemView);
+        imageView = itemView.findViewById(R.id.image_view);
+        }
+        }
+        }

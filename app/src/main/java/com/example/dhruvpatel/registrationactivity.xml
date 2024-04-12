@@ -1,0 +1,111 @@
+package com.example.dhruvpatel
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.dhruvpatel.ui.theme.DhruvpatelTheme
+
+class registrationactivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            DhruvpatelTheme {
+                // A surface container using the 'background' color from the theme
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    Greeting2("Android")
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun Greeting2(name: String, modifier: Modifier = Modifier) {
+    Text(
+        text = "Hello $name!",
+        modifier = modifier
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview2() {
+    DhruvpatelTheme {
+        Greeting2("Android")
+    }
+}
+    FirebaseAuth.getInstance().signOut();
+
+    findViewById(R.id.register_button).setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+    String email = ((EditText) findViewById(R.id.email_edit_text)).getText().toString();
+    String password = ((EditText) findViewById(R.id.password_edit_text)).getText().toString();
+
+    FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
+    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+    @Override
+    public void onComplete(@NonNull Task<AuthResult> task) {
+        if (task.isSuccessful()) {
+        Toast.makeText(RegisterActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
+        finish();
+        } else {
+        Toast.makeText(RegisterActivity.this, "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+        }
+        }
+        });
+        }
+        });
+        setContentView(R.layout.activity_register);
+
+        getSupportActionBar().setTitle("Register");
+
+        findViewById(R.id.register_button).setEnabled(false);
+
+        ((EditText) findViewById(R.id.email_edit_text)).addTextChangedListener(new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+        if (s.length() > 0 && ((EditText) findViewById(R.id.password_edit_text)).getText().length() > 0) {
+        findViewById(R.id.register_button).setEnabled(true);
+        } else {
+        findViewById(R.id.register_button).setEnabled(false);
+        }
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+        }
+        });
+
+        ((EditText) findViewById(R.id.password_edit_text)).addTextChangedListener(new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+        if (s.length() > 0 && ((EditText) findViewById(R.id.email_edit_text)).getText().length() > 0) {
+        findViewById(R.id.register_button).setEnabled(true);
+        } else {
+        findViewById(R.id.register_button).setEnabled(false);
+        }
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+        }
+        });

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1044413014263",
+    "project_id": "tenacious-veld-301715",
+    "storage_bucket": "tenacious-veld-301715.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1044413014263:android:4c9c6dc00e5ff26a0f33f2",
+        "android_client_info": {
+          "package_name": "com.example.dhruvpatel"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6hyVKxDJ80vc127Pq9AuxZ1my5voerG4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
